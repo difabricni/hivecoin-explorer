@@ -19,9 +19,9 @@ function getblock(blockhash, callback) {
     };
 
     var options = {
-        host: config.host,
-        port: config.port,
-        auth: (config.username + ":" + config.password),
+        host: config.hivenodehost,
+        port: config.hivenodeport,
+        auth: (config.hivenodeusername + ":" + config.hivenodepassword),
         method: 'POST',
         headers: headers
     };
@@ -77,9 +77,9 @@ function getrawtransaction(txid, callback) {
     };
 
     var options = {
-        host: config.host,
-        port: config.port,
-        auth: (config.username + ":" + config.password),
+        host: config.hivenodehost,
+        port: config.hivenodeport,
+        auth: (config.hivenodeusername + ":" + config.hivenodepassword),
         method: 'POST',
         headers: headers
     };
@@ -154,9 +154,9 @@ function startWebsite(){
     app.get('/get/transaction/:txid', txpage);
     app.get('/get/block/:blockhash', blockpage)
 
-    var server=app.listen(3000, function(err) {
+    var server=app.listen(config.websrvport, function(err) {
         if (err) console.log(err);
-        console.log("Server listening on PORT", 3000);
+        console.log("Server listening on PORT", config.websrvport);
     });
 
 };
